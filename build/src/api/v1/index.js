@@ -6,7 +6,7 @@ exports.defualt = {
     handler: async (req, res, next) => {
         if (req.middlewares == undefined)
             return res.status(500).send();
-        if (req.params[tracker_1.Tracker.uriParmeter] == undefined)
+        if (req.params[tracker_1.Tracker.uriParmeter.replace(":","")] == undefined)
             return res.status(400).send('AppId not defined');
         tracker_1.Tracker.processRequest(req);
         var buf = Buffer.from([

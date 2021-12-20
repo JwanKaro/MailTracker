@@ -4,7 +4,7 @@ exports.Tracker = void 0;
 class Tracker {
     static uriParmeter = ':token';
     static processRequest(req) {
-        const link = req.params.token;
+        const link = req.params[Tracker.uriParmeter.replace(':', '')];
         var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress || req.socket.remoteAddress || "unknown";
         const device = req.headers['user-agent'] || 'unknown';
         Tracker.emitView(link, device, Array.isArray(ip) ? ip.join(',') : ip);

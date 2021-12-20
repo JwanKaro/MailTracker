@@ -1,11 +1,18 @@
+import "./src/path"
+
 import config from "./main.config";
 import App from './src/app';
+import { readFileSync } from 'fs';
 
-process.app = new App(config);
-// initialize the app
-(async()=>{process.app.init()})();
+const readKey = (path: string) => readFileSync(path, 'utf8');
 
-// TODO:move this 
-process.app.eventManager.on('event:opened', (data) => {
-    console.log('event:opened', data);
-});
+const settings = JSON.parse(readFileSync("settings.json").toString("utf8"));
+process.env.JWT_SECRET_PUBLIC = readKey(settings.secrets.paths.jwtPublicKey);
+process.env.JWT_SECRET_PRIVATE = readKey(settings.secrets.paths.jwtPrivateKey);
+
+export default App;
+
+
+
+// main();
+

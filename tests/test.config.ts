@@ -1,4 +1,4 @@
-import { IConfig } from './src/@types';
+import { IConfig } from '../src/@types';
 import path from 'path';
 
 const config: IConfig = {
@@ -7,8 +7,8 @@ const config: IConfig = {
 		name: 'MailTracker',
 	},
 	server: {
-		port: process.env.PORT || 3450,
-		enteryPoint: path.join(__dirname, 'src/www'),
+		port: process.env.PORT || 1231,
+		enteryPoint: path.join(path.resolve(__dirname,"../"), 'src/www'),
 	},
 	app: {
 		name: 'Mail tracker',
